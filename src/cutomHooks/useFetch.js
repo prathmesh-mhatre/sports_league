@@ -2,18 +2,18 @@ import { useState, useEffect } from "react";
 
 export const useFetch = (url) => {
   const [loading, setLoading] = useState(true);
-  const [leagues, setLeagues] = useState([]);
+  const [data, setData] = useState([]);
 
   const getLeagues = async () => {
     const response = await fetch(url);
-    const leagues = await response.json();
-    setLeagues(leagues.leagues);
+    const data = await response.json();
+    setData(data);
     setLoading(false);
   };
 
   useEffect(() => {
     getLeagues();
-  }, [url]);
+  }, []);
 
-  return { loading, leagues };
+  return { loading, data };
 };
